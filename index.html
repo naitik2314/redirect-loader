@@ -3,21 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>Naitik Shah</title>
-  <!-- Redirect after 3 seconds -->
   <meta http-equiv="refresh" content="3; https://naitikshah.streamlit.app/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .loading-container {
+      max-width: 400px;
+    }
+
+    .logo-container {
+      position: relative;
+      height: 100px;
+      width: 100px;
+      margin: 0 auto 20px;
+    }
+
+    .data-node {
+      width: 20px;
+      height: 20px;
+      background-color: #03dac6;
+      border-radius: 50%;
+      position: absolute;
+      animation: spin 2s infinite linear;
+    }
+
+    .data-link {
+      width: 100px;
+      height: 5px;
+      background-color: #bb86fc;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(1.5); }
+    }
+  </style>
 </head>
 <body>
   <div class="loading-container">
     <div class="logo-container">
-      <!-- Animation for the loading symbol -->
       <div class="data-node"></div>
       <div class="data-link"></div>
     </div>
     <h1>Redirecting to the Website<span id="dots"></span></h1>
     <p>Completely built using <strong>Streamlit</strong></p>
   </div>
-  <script src="script.js"></script>
+  <script>
+    const dots = document.getElementById("dots");
+    let dotCount = 0;
+
+    setInterval(() => {
+      dotCount = (dotCount + 1) % 4;
+      dots.textContent = ".".repeat(dotCount);
+    }, 500);
+  </script>
 </body>
 </html>
