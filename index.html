@@ -2,12 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Naitik Shah</title>
-  <meta http-equiv="refresh" content="3; https://portfolio-website-lyart-psi.vercel.app/" />
+  <title>Redirecting to Naitik Shah</title>
+  <!-- Redirect after 3 seconds -->
+  <meta http-equiv="refresh" content="3; URL=https://portfolio-website-lyart-psi.vercel.app/" />
   <style>
+    /* 
+      Base Styling 
+      ------------------------------------------------- */
     body {
       margin: 0;
-      background-color: #121212;
+      padding: 0;
+      background-color: #121212; /* dark background for continuity */
       color: #ffffff;
       font-family: 'Roboto', sans-serif;
       display: flex;
@@ -17,62 +22,66 @@
       text-align: center;
     }
 
-    .loading-container {
-      max-width: 400px;
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
-    .logo-container {
-      position: relative;
-      height: 100px;
-      width: 100px;
-      margin: 0 auto 20px;
-    }
-
-    .data-node {
-      width: 20px;
-      height: 20px;
-      background-color: #03dac6;
+    /* 
+      Spinner Styles 
+      ------------------------------------------------- */
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(255, 255, 255, 0.1); 
+      border-top: 5px solid #03dac6; /* accent color */
       border-radius: 50%;
-      position: absolute;
-      animation: spin 2s infinite linear;
-    }
-
-    .data-link {
-      width: 100px;
-      height: 5px;
-      background-color: #bb86fc;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      animation: pulse 1.5s infinite ease-in-out;
+      animation: spin 1s linear infinite;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
+      0%   { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scaleX(1); }
-      50% { transform: scaleX(1.5); }
+    /* 
+      Subtle fade-in text 
+      ------------------------------------------------- */
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* 
+      Dot animation 
+      ------------------------------------------------- */
+    #dots {
+      font-weight: 700;
+      letter-spacing: 2px;
     }
   </style>
 </head>
 <body>
-  <div class="loading-container">
-    <div class="logo-container">
-      <div class="data-node"></div>
-      <div class="data-link"></div>
-    </div>
-    <h1>Redirecting to the Website<span id="dots"></span></h1>
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <h1>Redirecting<span id="dots"></span></h1>
   </div>
+
   <script>
+    // Animate the trailing dots
     const dots = document.getElementById("dots");
     let dotCount = 0;
-
     setInterval(() => {
-      dotCount = (dotCount + 1) % 4;
+      dotCount = (dotCount + 1) % 4; 
       dots.textContent = ".".repeat(dotCount);
     }, 500);
   </script>
